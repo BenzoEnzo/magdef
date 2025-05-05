@@ -1,0 +1,38 @@
+{
+  "type": "record",
+  "name": "RegisteredService",
+  "namespace": "pl.bartus.jakub.magdef.schema",
+  "fields": [
+    {
+      "name": "client_id",
+      "type": "int"
+    },
+    {
+      "name": "service_name",
+      "type": "string"
+    },
+    {
+      "name": "active",
+      "type": "boolean"
+    },
+    {
+      "name": "last_update_dt",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "endpoint",
+      "type": "string"
+    },
+    {
+      "name": "method",
+      "type": {
+        "type": "enum",
+        "name": "HttpMethod",
+        "symbols": ["GET", "POST", "PUT", "DELETE", "PATCH"]
+      }
+    }
+  ]
+}

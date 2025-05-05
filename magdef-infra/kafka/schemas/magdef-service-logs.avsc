@@ -1,0 +1,82 @@
+{
+  "type": "record",
+  "name": "ServiceLog",
+  "namespace": "com.magdef.schema",
+  "fields": [
+    {
+      "name": "service_id",
+      "type": "int"
+    },
+    {
+      "name": "timestamp",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "severity",
+      "type": {
+        "type": "enum",
+        "name": "LogSeverity",
+        "symbols": ["DEBUG", "INFO", "WARN", "ERROR", "CRITICAL"]
+      }
+    },
+    {
+      "name": "log_type",
+      "type": "string",
+      "doc": "E.g. 'auth', 'request', 'anomaly', etc."
+    },
+    {
+      "name": "message",
+      "type": "string"
+    },
+    {
+      "name": "headers",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "HttpHeader",
+          "fields": [
+            { "name": "key", "type": "string" },
+            { "name": "value", "type": "string" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "client_ip",
+      "type": ["null", "string"],
+      "default": null
+    },
+    {
+      "name": "endpoint",
+      "type": ["null", "string"],
+      "default": null
+    },
+    {
+      "name": "http_method",
+      "type": [
+        "null",
+        {
+          "type": "enum",
+          "name": "HttpMethod",
+          "symbols": ["GET", "POST", "PUT", "DELETE", "PATCH"]
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "user_agent",
+      "type": ["null", "string"],
+      "default": null
+    },
+    {
+      "name": "extra",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "Optional JSON-formatted string for extra data"
+    }
+  ]
+}
